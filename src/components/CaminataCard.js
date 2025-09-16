@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function CaminataCard({ caminata }) {
   const formattedDate = caminata.fecha ? new Date(caminata.fecha).toLocaleDateString('es-ES', {
@@ -27,14 +28,14 @@ export default function CaminataCard({ caminata }) {
         <p className="text-gray-700 leading-relaxed mb-4">{caminata.descripcion}</p>
         
         {caminata.linkInscripcion ? (
-          <a
+          <Link
             href={caminata.linkInscripcion}
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 transform hover:scale-105"
           >
             📝 ¡Inscríbete Ahora!
-          </a>
+          </Link>
         ) : (
           <p className="text-sm text-gray-500 italic">Enlace de inscripción no disponible.</p>
         )}

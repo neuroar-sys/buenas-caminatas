@@ -19,15 +19,16 @@ export default function RootLayout({ children }) {
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between py-4">
               {/* Logo Personalizado - Solo Imagen */}
-              <div>
-                <Image 
-                  src="https://i.ibb.co/ZQ5kK9j/buenos-pasos-logo.png" 
-                  alt="Logo Buenos Pasos"
-                  width={120} // 👈 Añadimos width
-                  height={48}  // 👈 Añadimos height
-                  className="h-12 w-auto"
-                />
-              </div>
+              {/* Logo Personalizado - Solo Imagen (Desde carpeta 'public') */}
+<div>
+  <Image 
+    src="/images/buenos-pasos-logo.png" // 👈 ¡Ruta local!
+    alt="Logo Buenos Pasos"
+    width={120}
+    height={48}
+    className="h-12 w-auto"
+  />
+</div>
 
               {/* Navegación */}
               <nav className="hidden md:flex space-x-8">
