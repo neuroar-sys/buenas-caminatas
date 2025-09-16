@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function CaminataCard({ caminata }) {
   const formattedDate = caminata.fecha ? new Date(caminata.fecha).toLocaleDateString('es-ES', {
@@ -27,18 +26,28 @@ export default function CaminataCard({ caminata }) {
         <p className="text-sm text-gray-600 mb-4">📅 {formattedDate}</p>
         <p className="text-gray-700 leading-relaxed mb-4">{caminata.descripcion}</p>
         
-        {caminata.linkInscripcion ? (
-          <Link
-            href={caminata.linkInscripcion}
+        {/* Contenedor de Botones */}
+        <div className="flex flex-col sm:flex-row gap-3">
+          {/* Botón de Inscripción (Tally) */}
+          <a
+            href="https://tally.so/r/3lpkNv" // 👈 ¡REEMPLAZA ESTO CON TU LINK DE TALLY!
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 transform hover:scale-105"
+            className="flex-1 text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 transform hover:scale-105 flex items-center justify-center"
           >
             📝 ¡Inscríbete Ahora!
-          </Link>
-        ) : (
-          <p className="text-sm text-gray-500 italic">Enlace de inscripción no disponible.</p>
-        )}
+          </a>
+
+          {/* Botón de WhatsApp */}
+          <a
+            href="https://wa.me/1157577039" // 👈 ¡REEMPLAZA ESTO CON TU NÚMERO DE WHATSAPP!
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 transform hover:scale-105 flex items-center justify-center"
+          >
+            💬 WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   );
