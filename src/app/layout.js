@@ -1,7 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Link from 'next/link'; // 👈 Importamos Link
-import Image from 'next/image'; // 👈 Importamos Image
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,22 +18,19 @@ export default function RootLayout({ children }) {
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between py-4">
               {/* Logo Personalizado - Solo Imagen */}
-              {/* Logo Personalizado - Solo Imagen (Desde carpeta 'public') */}
-<div>
-  <Image 
-    src="/images/buenos-pasos-logo.png" // 👈 ¡Ruta local!
-    alt="Logo Buenos Pasos"
-    width={120}
-    height={48}
-    className="h-12 w-auto"
-  />
-</div>
+              <div>
+                <img 
+                  src="/images/buenos-pasos-logo.png" 
+                  alt="Logo Buenos Pasos"
+                  className="h-12 w-auto"
+                />
+              </div>
 
               {/* Navegación */}
               <nav className="hidden md:flex space-x-8">
-                <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Inicio</Link> {/* 👈 Usamos Link */}
-                <Link href="/caminatas" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Caminatas</Link> {/* 👈 Usamos Link */}
-                <Link href="/notion-page/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Sobre Nosotros</Link> {/* 👈 Usamos Link */}
+                <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Inicio</Link>
+                <Link href="/caminatas" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Caminatas</Link>
+                <Link href="/notion-page/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Sobre Nosotros</Link>
               </nav>
 
               {/* Botón de Acción */}
