@@ -28,7 +28,7 @@ export default function TestimonioCard({ testimonio }) {
           </div>
         </div>
       </div>
-      <p className="italic text-gray-700 text-lg">`"${testimonio.testimonio}"`</p>
+      <p className="italic text-gray-700 text-lg">{`"${testimonio.testimonio}"`}</p>
     </div>
   );
 }
