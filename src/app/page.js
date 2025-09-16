@@ -1,6 +1,7 @@
 import { getTestimonios } from '@/lib/notion';
 import TestimonioCard from '@/components/TestimonioCard';
 import Link from 'next/link';
+import InscripcionForm from '@/components/InscripcionForm'; // 👈 ¡Importamos el nuevo componente!
 
 export default async function Home() {
   const testimonios = await getTestimonios();
@@ -273,21 +274,17 @@ export default async function Home() {
       </section>
 
       {/* Sección 8: Inscripción (con ID para anclaje) */}
-      <section id="inscripcion" className="py-20 bg-gray-800 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-8">¡Listo para empezar tu camino hacia la salud?</h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Completa el formulario y uno de nuestros coordinadores se pondrá en contacto contigo para guiarte en tu primera caminata.
-          </p>
-          <div className="bg-gray-700 p-8 rounded-xl inline-block">
-            <h3 className="text-2xl font-bold mb-4">Formulario de Inscripción</h3>
-            <p className="mb-6">Próximamente disponible.</p>
-            <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105">
-              📝 Inscribirse Ahora
-            </button>
-          </div>
-        </div>
-      </section>
+<section id="inscripcion" className="py-20 bg-gray-50">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-12">
+      <h2 className="text-4xl font-bold mb-4 text-gray-800">¡Listo para empezar tu camino hacia la salud?</h2>
+      <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        Completa el formulario y uno de nuestros coordinadores se pondrá en contacto contigo para guiarte en tu primera caminata.
+      </p>
+    </div>
+    <InscripcionForm /> {/* 👈 ¡Usamos el componente aquí! */}
+  </div>
+</section>
 
       {/* Sección 9: Contacto */}
       <section className="py-20 bg-white">
