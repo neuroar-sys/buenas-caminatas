@@ -1,6 +1,5 @@
 import { getTestimonios } from '@/lib/notion';
 import TestimonioCard from '@/components/TestimonioCard';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Home() {
