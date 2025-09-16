@@ -33,13 +33,14 @@ export default function RootLayout({ children }) {
                 <Link href="/notion-page/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Sobre Nosotros</Link>
               </nav>
 
-              {/* Botón de Acción - ¡Ahora es un Link! */}
-              <Link 
-                href="#inscripcion" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-300 transform hover:scale-105"
-              >
-                ¡Reserva Ahora!
-              </Link>
+              {/* Botón de Acción - ¡Redirige a la sección de inscripción! */}
+
+<Link 
+  href="/inscripcion" 
+  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-300 transform hover:scale-105"
+>
+  ¡Reserva Ahora!
+</Link>
             </div>
           </div>
         </header>
