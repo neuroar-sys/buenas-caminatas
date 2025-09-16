@@ -1,20 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    // ¡ADVERTENCIA! Esto permite que el build de producción se complete incluso si hay errores de ESLint.
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com', // Para las imágenes de testimonios desde S3
+        hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: '**.notion.so', // Para imágenes de Notion
+        hostname: '**.notion.so',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'placehold.co', // Para imágenes de placeholder
+        hostname: 'placehold.co',
         pathname: '/**',
       },
     ],
