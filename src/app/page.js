@@ -1,5 +1,7 @@
 import { getTestimonios } from '@/lib/notion';
 import TestimonioCard from '@/components/TestimonioCard';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function Home() {
   const testimonios = await getTestimonios();
@@ -11,7 +13,7 @@ export default async function Home() {
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://placehold.co/1920x1080/4ade80/ffffff?text=Grupo+Caminando+al+Amanecer')" }}
+          style={{ backgroundImage: "url('https://placehold.co/1920x1080/4ade80/ffffff?text=Grupo+Caminando+en+Parque')" }}
         ></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
@@ -22,12 +24,12 @@ export default async function Home() {
               Tu medicina camina
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="#inscripcion" className="bg-white text-green-700 hover:bg-green-100 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Link href="#inscripcion" className="bg-white text-green-700 hover:bg-green-100 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                 🧭 Probar gratis
-              </a>
-              <a href="#circuitos" className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-white hover:text-green-700 transform hover:scale-105">
+              </Link>
+              <Link href="#circuitos" className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-white hover:text-green-700 transform hover:scale-105">
                 🕒 Ver horarios
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -115,7 +117,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Sección 4: El Método (4 pasos) */}
+      {/* Sección 4: El Método (5 pasos) */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">

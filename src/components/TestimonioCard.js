@@ -1,11 +1,17 @@
+'use client';
+
+import Image from 'next/image';
+
 export default function TestimonioCard({ testimonio }) {
   return (
     <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
       <div className="flex items-start mb-4">
         {testimonio.foto ? (
-          <img
+          <Image
             src={testimonio.foto}
             alt={testimonio.nombre}
+            width={48}
+            height={48}
             className="w-12 h-12 rounded-full mr-4 flex-shrink-0"
           />
         ) : (
@@ -22,7 +28,7 @@ export default function TestimonioCard({ testimonio }) {
           </div>
         </div>
       </div>
-      <p className="italic text-gray-700 text-lg">"{testimonio.testimonio}"</p>
+      <p className="italic text-gray-700 text-lg">{"\""}{testimonio.testimonio}{"\""}</p>
     </div>
   );
 }

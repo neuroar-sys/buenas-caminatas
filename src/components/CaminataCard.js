@@ -1,3 +1,7 @@
+'use client';
+
+import Image from 'next/image';
+
 export default function CaminataCard({ caminata }) {
   const formattedDate = caminata.fecha ? new Date(caminata.fecha).toLocaleDateString('es-ES', {
     year: 'numeric',
@@ -8,21 +12,20 @@ export default function CaminataCard({ caminata }) {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
       {caminata.imagen && (
-  <Image
-    src={caminata.imagen}
-    alt={caminata.title}
-    width={400} // 👈 Añadimos un width estimado
-    height={200} // 👈 Añadimos un height estimado
-    className="w-full h-48 object-cover"
-  />
-)}
+        <Image
+          src={caminata.imagen}
+          alt={caminata.title}
+          width={400}
+          height={200}
+          className="w-full h-48 object-cover"
+        />
+      )}
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2 text-gray-800">{caminata.title}</h3>
         <p className="text-sm text-gray-600 mb-2">📍 {caminata.ubicacion}</p>
         <p className="text-sm text-gray-600 mb-4">📅 {formattedDate}</p>
         <p className="text-gray-700 leading-relaxed mb-4">{caminata.descripcion}</p>
         
-        {/* Botón de Inscripción */}
         {caminata.linkInscripcion ? (
           <a
             href={caminata.linkInscripcion}
