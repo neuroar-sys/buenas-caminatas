@@ -1,5 +1,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import Link from 'next/link'; // 👈 Importamos Link
+import Image from 'next/image'; // 👈 Importamos Image
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,21 +18,22 @@ export default function RootLayout({ children }) {
         <header className="bg-white shadow-lg sticky top-0 z-50">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between py-4">
-              {/* Logo Personalizado */}
-              <div className="flex items-center">
-                <img 
-                  src="https://i.ibb.co/t16ZYWs/BUENOS-PASOS.png" // 👈 Reemplaza esta URL con la de tu imagen
+              {/* Logo Personalizado - Solo Imagen */}
+              <div>
+                <Image 
+                  src="https://i.ibb.co/ZQ5kK9j/buenos-pasos-logo.png" 
                   alt="Logo Buenos Pasos"
-                  className="h-10 w-auto mr-3"
+                  width={120} // 👈 Añadimos width
+                  height={48}  // 👈 Añadimos height
+                  className="h-12 w-auto"
                 />
-                <h1 className="text-2xl font-bold text-gray-800">Buenos Pasos</h1>
               </div>
 
               {/* Navegación */}
               <nav className="hidden md:flex space-x-8">
-                <a href="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Inicio</a>
-                <a href="/caminatas" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Caminatas</a>
-                <a href="/notion-page/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Sobre Nosotros</a>
+                <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Inicio</Link> {/* 👈 Usamos Link */}
+                <Link href="/caminatas" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Caminatas</Link> {/* 👈 Usamos Link */}
+                <Link href="/notion-page/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Sobre Nosotros</Link> {/* 👈 Usamos Link */}
               </nav>
 
               {/* Botón de Acción */}
