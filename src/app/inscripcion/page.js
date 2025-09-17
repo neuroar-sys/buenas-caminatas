@@ -26,7 +26,7 @@ export default function InscripcionPage() {
         <div className="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto">
           <div className="relative pb-[120%] h-0 overflow-hidden rounded-lg shadow-md">
             <iframe
-              src="https://tally.so/embed/https://tally.so/embed/3lpkNv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+              src="https://tally.so/embed/3lpkNv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
               className="absolute top-0 left-0 w-full h-full border-0"
               title="Formulario de Inscripción a Caminatas Saludables"
               loading="lazy"
