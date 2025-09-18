@@ -1,10 +1,10 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Header from '@/components/Header';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 
-// ✅ METADATOS SEO COMPLETOS PARA TODO EL SITIO
+// Metadatos SEO Globales
 export const metadata = {
   title: {
     default: 'Caminatas Saludables | Tu Medicina Camina',
@@ -59,22 +59,91 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  // verification: {
-  //   google: 'tu_codigo_de_verificacion_de_google_aqui', // ¡Descomenta y reemplaza con tu código real!
-  // },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={inter.className}>
       <body>
-        <Header />
+        <header className="bg-white shadow-lg sticky top-0 z-50">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between py-4">
+              {/* Logo Personalizado - Solo Imagen */}
+              <div>
+                <img 
+                  src="/images/buenos-pasos-logo.png" 
+                  alt="Logo Buenos Pasos"
+                  className="h-12 w-auto"
+                />
+              </div>
+
+              {/* Navegación */}
+              <nav className="hidden md:flex space-x-8">
+                <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Inicio</Link>
+                <Link href="/caminatas" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Caminatas</Link>
+                <Link href="/notion-page/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Sobre Nosotros</Link>
+              </nav>
+
+              {/* Botón de Acción - ¡Redirige a la página de inscripción! */}
+              <Link 
+                href="/inscripcion" 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-300 transform hover:scale-105"
+              >
+                ¡Reserva Ahora!
+              </Link>
+            </div>
+          </div>
+        </header>
+
+        {/* Contenido Principal */}
         <main className="min-h-screen">
           {children}
         </main>
-        <footer className="bg-gray-800 text-white py-8">
-          <div className="container mx-auto px-4 text-center">
-            <p>© 2024 Buenos Pasos. Todos los derechos reservados.</p>
+
+        {/* Footer Moderno con Enlaces Legales */}
+        <footer className="bg-gray-900 text-white py-12">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Caminatas Saludables</h3>
+                <p className="text-sm opacity-75">
+                  Movilidad con Sentido. Un emprendimiento sociosanitario para mejorar la salud de personas con condiciones crónicas.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Contacto</h3>
+                <ul className="space-y-2 text-sm">
+                  <li>📧 hola@caminatassaludables.com</li>
+                  <li>📱 +54 9 11 1234-5678</li>
+                  <li>📍 San Justo, Buenos Aires</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Enlaces Legales</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/notion-page/privacy" className="text-blue-400 hover:text-blue-300 hover:underline transition-colors">
+                      📄 Política de Privacidad
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/notion-page/consent" className="text-blue-400 hover:text-blue-300 hover:underline transition-colors">
+                      ✍️ Consentimiento Informado
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/notion-page/terms" className="text-blue-400 hover:text-blue-300 hover:underline transition-colors">
+                      📑 Términos y Condiciones
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 pt-8 text-center">
+              <p className="text-xs opacity-50">
+                © 2024 Caminatas Saludables. Todos los derechos reservados.
+              </p>
+            </div>
           </div>
         </footer>
       </body>

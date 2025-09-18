@@ -2,6 +2,7 @@ import { getTestimonios } from '@/lib/notion';
 import TestimonioCard from '@/components/TestimonioCard';
 import Image from 'next/image';
 import Link from 'next/link';
+import FAQAccordion from '@/components/FAQAccordion';
 
 // Metadatos específicos para la página de inicio
 export const metadata = {
@@ -30,24 +31,40 @@ export default async function Home() {
 
   return (
     <div>
-      {/* Sección 1: Hero (Portada) */}
-      {/* Sección 1: Hero (Portada) */}
-<section className="relative bg-gradient-to-r from-green-400 to-emerald-500 text-white py-20 md:py-32 overflow-hidden">
-  <div className="absolute inset-0 bg-black opacity-10"></div> {/* Reducimos la opacidad del overlay para que el verde se vea más brillante */}
+    
+{/* Sección 1: Hero (Portada) */}
+<section className="relative py-20 md:py-32 overflow-hidden">
+  {/* Capa de la imagen de fondo */}
+  <div 
+    className="absolute inset-0 bg-cover bg-center"
+    style={{ backgroundImage: "url('/images/hero-caminata-local.jpg')" }}
+  ></div>
+  
+  {/* Capa de superposición (overlay) más oscura */}
+  <div className="absolute inset-0 bg-black opacity-40"></div>
+  
   <div className="container mx-auto px-4 relative z-10">
     <div className="text-center max-w-3xl mx-auto">
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
         Caminatas Saludables
       </h1>
-      <p className="text-2xl md:text-3xl mb-8 font-light">
+      <p className="text-2xl md:text-3xl mb-8 font-bold text-white">
         Tu medicina camina
       </p>
       <div className="flex flex-col sm:flex-row justify-center gap-4">
-        <Link href="/inscripcion" className="bg-white text-green-700 hover:bg-green-100 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+        <Link 
+          href="/inscripcion" 
+          className="bg-white text-green-700 hover:bg-green-100 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+        >
           🧭 Probar gratis
+          <p className="text-sm font-normal mt-1">1 caminata gratis de bienvenida</p>
         </Link>
-        <Link href="#circuitos" className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-white hover:text-green-700 transform hover:scale-105">
+        <Link 
+          href="#circuitos" 
+          className="border-2 border-white bg-green-900 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-white hover:text-green-700 transform hover:scale-105"
+        >
           🕒 Ver horarios
+          <p className="text-sm font-normal mt-1">Sin compromiso</p>
         </Link>
       </div>
     </div>
@@ -230,68 +247,149 @@ export default async function Home() {
       </section>
 
       {/* Sección 7: Precios */}
-      <section className="py-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Planes y Precios</h2>
-            <p className="text-xl max-w-2xl mx-auto">
-              Invierte en tu salud con opciones flexibles.
-            </p>
-          </div>
+<section className="py-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-white">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-bold mb-4">Planes y Precios</h2>
+      <p className="text-xl max-w-2xl mx-auto">
+        Invierte en tu salud con opciones flexibles.
+      </p>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Plan Básico */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/30">
-              <h3 className="text-2xl font-bold mb-4">Básico</h3>
-              <div className="text-4xl font-extrabold mb-4">$5.000</div>
-              <p className="mb-6">por sesión</p>
-              <ul className="text-left space-y-2 mb-8">
-                <li>✅ Ideal para probar</li>
-                <li>✅ Sin compromiso</li>
-              </ul>
-              <Link href="/inscripcion" className="w-full bg-white text-orange-600 hover:bg-gray-100 py-3 rounded-lg font-bold transition-colors block text-center">
-                Elegir Plan
-              </Link>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* Plan Básico */}
+      <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/30 hover:bg-white/30 transition-all duration-300">
+        <h3 className="text-2xl font-bold mb-4">Básico</h3>
+        <div className="text-4xl font-extrabold mb-4">$5.000</div>
+        <p className="mb-6 text-sm">por sesión</p>
+        <ul className="space-y-3 mb-8">
+          <li className="flex items-center justify-center text-left">
+            <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm">Ideal para probar</span>
+          </li>
+          <li className="flex items-center justify-center text-left">
+            <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm">Sin compromiso</span>
+          </li>
+        </ul>
+        <Link href="/inscripcion" className="w-full bg-white text-orange-600 hover:bg-gray-100 py-3 rounded-lg font-bold transition-colors block text-center">
+          Elegir Plan
+        </Link>
+      </div>
 
-            {/* Plan Premium (Destacado) */}
-            <div className="bg-white text-gray-800 rounded-2xl p-8 text-center shadow-2xl transform scale-105 relative">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-white px-4 py-1 rounded-full text-sm font-bold">
-                ¡Más Popular!
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Premium</h3>
-              <div className="text-4xl font-extrabold mb-2">$70.000</div>
-              <p className="text-gray-600 mb-6">por mes (16 sesiones)</p>
-              <div className="bg-green-100 text-green-800 py-1 px-3 rounded-full inline-block mb-6 text-sm font-semibold">
-                Ahorrás $10.000 + evaluación
-              </div>
-              <ul className="text-left space-y-2 mb-8">
-                <li>✅ Ahorro significativo</li>
-                <li>✅ Evaluación personalizada</li>
-                <li>✅ Prioridad en horarios</li>
-              </ul>
-              <Link href="/inscripcion" className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded-lg font-bold transition-colors block text-center">
-                Elegir Plan
-              </Link>
-            </div>
-
-            {/* Plan Corporativo */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/30">
-              <h3 className="text-2xl font-bold mb-4">Corporativo</h3>
-              <div className="text-4xl font-extrabold mb-4">Consultar</div>
-              <p className="mb-6">para empresas y clubes</p>
-              <ul className="text-left space-y-2 mb-8">
-                <li>✅ Programas a medida</li>
-                <li>✅ Descuentos por volumen</li>
-                <li>✅ Informes de progreso</li>
-              </ul>
-              <a href="https://wa.me/5491112345678" className="w-full bg-transparent border-2 border-white hover:bg-white/20 py-3 rounded-lg font-bold transition-colors block text-center">
-                Contactar
-              </a>
-            </div>
-          </div>
+      {/* Plan Premium (Destacado) */}
+      <div className="bg-white text-gray-800 rounded-2xl p-8 text-center shadow-2xl transform scale-105 relative border-4 border-yellow-400 hover:scale-107 transition-all duration-300">
+        {/* Etiqueta "¡Más Popular!" */}
+        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+          ¡Más Popular!
         </div>
-      </section>
+        <h3 className="text-2xl font-bold mb-4">Premium</h3>
+        <div className="text-4xl font-extrabold mb-2">$70.000</div>
+        <p className="text-gray-600 mb-6 text-sm">por mes (16 sesiones)</p>
+        <div className="bg-green-100 text-green-800 py-1 px-3 rounded-full inline-block mb-6 text-xs font-semibold">
+          Ahorrás $10.000 + evaluación
+        </div>
+        <ul className="space-y-3 mb-8">
+          <li className="flex items-center justify-center text-left">
+            <svg className="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm">Ahorro significativo</span>
+          </li>
+          <li className="flex items-center justify-center text-left">
+            <svg className="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm">Evaluación personalizada</span>
+          </li>
+          <li className="flex items-center justify-center text-left">
+            <svg className="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm">Prioridad en horarios</span>
+          </li>
+          <li className="flex items-center justify-center text-left">
+            <svg className="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm">Soporte personalizado</span>
+          </li>
+        </ul>
+        <Link href="/inscripcion" className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded-lg font-bold transition-colors block text-center">
+          Elegir Plan
+        </Link>
+      </div>
+
+      {/* Plan Corporativo */}
+      <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/30 hover:bg-white/30 transition-all duration-300">
+        <h3 className="text-2xl font-bold mb-4">Corporativo</h3>
+        <div className="text-4xl font-extrabold mb-4">Consultar</div>
+        <p className="mb-6 text-sm">para empresas y clubes</p>
+        <ul className="space-y-3 mb-8">
+          <li className="flex items-center justify-center text-left">
+            <svg className="w-5 h-5 text-purple-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm">Programas a medida</span>
+          </li>
+          <li className="flex items-center justify-center text-left">
+            <svg className="w-5 h-5 text-purple-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm">Descuentos por volumen</span>
+          </li>
+          <li className="flex items-center justify-center text-left">
+            <svg className="w-5 h-5 text-purple-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm">Informes de progreso</span>
+          </li>
+        </ul>
+        <a href="https://wa.me/5491112345678" className="w-full bg-transparent border-2 border-white hover:bg-white/20 py-3 rounded-lg font-bold transition-colors block text-center">
+          Contactar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* Sección 8: Preguntas Frecuentes (FAQ) */}
+<section className="py-20 bg-white">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-bold mb-4 text-gray-800">Preguntas Frecuentes</h2>
+      <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        Encuentra respuestas a las dudas más comunes sobre nuestras caminatas.
+      </p>
+    </div>
+    <FAQAccordion faqs={[
+      {
+        question: "¿Necesito experiencia previa para participar?",
+        answer: "¡No! Nuestras caminatas están diseñadas para todos los niveles de condición física. Nuestros guías te acompañarán y adaptarán el ritmo a tus necesidades."
+      },
+      {
+        question: "¿Qué debo llevar a la caminata?",
+        answer: "Ropa cómoda, calzado deportivo, protector solar, una botella de agua y, sobre todo, ¡ganas de disfrutar y moverte!"
+      },
+      {
+        question: "¿Qué pasa si llueve?",
+        answer: "En caso de mal tiempo, la caminata se reprogramará. Te notificaremos con la mayor antelación posible a través del WhatsApp o email que nos hayas proporcionado."
+      },
+      {
+        question: "¿Puedo cancelar mi inscripción?",
+        answer: "Sí, puedes cancelar tu inscripción hasta 24 horas antes de la caminata sin penalización. Después de ese plazo, no se realizarán devoluciones."
+      },
+      {
+        question: "¿Hay descuentos para grupos o familias?",
+        answer: "¡Sí! Consulta nuestro plan Corporativo o contáctanos por WhatsApp para conocer nuestras promociones especiales para grupos y familias."
+      }
+    ]} />
+  </div>
+</section>
 
       {/* Sección 8: Contacto */}
       <section className="py-20 bg-white">
