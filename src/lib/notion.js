@@ -8,13 +8,9 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 export async function getPageContent(pageId) {
   try {
     const { results: blocks } = await notion.blocks.children.list({ block_id: pageId });
-    const mdBlocks = await Promise.all(
-      blocks.map(async (block) => {
-        const mdString = await n2m.blockToMarkdown(block);
-        return mdString.parent;
-      })
-    );
-    return mdBlocks.join('\n\n');
+    const mdblocks = await n2m.pageToMarkdown(pageId); // 👈 Usa pageToMarkdown
+    const mdString = n2m.toMarkdownString(mdblocks); // 👈 Convierte los bloques a string
+    return mdString.parent; // 👈 Devuelve el string Markdown
   } catch (error) {
     console.error('Error fetching Notion page:', error);
     return '# Error al cargar el contenido desde Notion.';
@@ -101,7 +97,7 @@ export async function getEquipo() {
       bio: page.properties.Bio?.rich_text[0]?.plain_text || '',
       foto: page.properties.Foto?.files[0]?.external?.url ||
         page.properties.Foto?.files[0]?.file?.url || '',
-      linkedin: page.properties.LinkedIn?.url || '',
+      
     }));
   } catch (error) {
     console.error('Error fetching equipo:', error);
