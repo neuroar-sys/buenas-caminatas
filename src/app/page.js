@@ -31,27 +31,28 @@ export default async function Home() {
   return (
     <div>
       {/* Sección 1: Hero (Portada) */}
-      <section className="relative bg-gradient-to-r from-green-500 to-blue-600 text-white py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Caminatas Saludables
-            </h1>
-            <p className="text-2xl md:text-3xl mb-8 font-light">
-              Tu medicina camina
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/inscripcion" className="bg-white text-green-700 hover:bg-green-100 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                🧭 Probar gratis
-              </Link>
-              <Link href="#circuitos" className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-white hover:text-green-700 transform hover:scale-105">
-                🕒 Ver horarios
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Sección 1: Hero (Portada) */}
+<section className="relative bg-gradient-to-r from-green-400 to-emerald-500 text-white py-20 md:py-32 overflow-hidden">
+  <div className="absolute inset-0 bg-black opacity-10"></div> {/* Reducimos la opacidad del overlay para que el verde se vea más brillante */}
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center max-w-3xl mx-auto">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+        Caminatas Saludables
+      </h1>
+      <p className="text-2xl md:text-3xl mb-8 font-light">
+        Tu medicina camina
+      </p>
+      <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <Link href="/inscripcion" className="bg-white text-green-700 hover:bg-green-100 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+          🧭 Probar gratis
+        </Link>
+        <Link href="#circuitos" className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-white hover:text-green-700 transform hover:scale-105">
+          🕒 Ver horarios
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Sección 2: ¿Qué es? */}
       <section className="py-20 bg-white">

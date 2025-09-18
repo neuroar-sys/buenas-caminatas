@@ -78,3 +78,25 @@ export async function getTestimonios() {
     return [];
   }
 }
+// Función para obtener el equipo
+export async function getEquipo() {
+  try {
+    const response = await notion.databases.query({
+      database_id: process.env.DATABASE_EQUIPO_ID,
+      sorts: [{ property: 'Nombre', direction: 'ascending' }],
+    });
+
+    return response.results.map((page) => ({
+      id: page.id,
+      nombre: page.properties.Nombre?.title[0]?.plain_text || 'Anónimo',
+      rol: page.properties.Rol?.rich_text[0]?.plain_text || '',
+      bio: page.properties.Bio?.rich_text[0]?.plain_text || '',
+      foto: page.properties.Foto?.files[0]?.external?.url ||
+        page.properties.Foto?.files[0]?.file?.url || '',
+      
+    }));
+  } catch (error) {
+    console.error('Error fetching equipo:', error);
+    return [];
+  }
+}
