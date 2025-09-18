@@ -1,5 +1,27 @@
-import { getUpcomingHikes } from '@/lib/notion'; // 👈 ¡USAMOS @/ en lugar de ../../lib/notion!
+import { getUpcomingHikes } from '@/lib/notion';
 import CaminataCard from '@/components/CaminataCard';
+
+// Metadatos específicos para la página de caminatas
+export const metadata = {
+  title: 'Próximas Caminatas | Caminatas Saludables',
+  description: 'Únete a nuestras próximas caminatas terapéuticas en San Justo y Castelar. Horarios flexibles y grupos reducidos para una experiencia personalizada.',
+  openGraph: {
+    title: 'Próximas Caminatas | Caminatas Saludables',
+    description: 'Únete a nuestras próximas caminatas terapéuticas en San Justo y Castelar. Horarios flexibles y grupos reducidos para una experiencia personalizada.',
+    url: 'https://buenas-caminatas.vercel.app/caminatas',
+    images: [
+      {
+        url: 'https://buenas-caminatas.vercel.app/images/caminatas-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Próximas caminatas terapéuticas',
+      },
+    ],
+  },
+  alternates: {
+    canonical: 'https://buenas-caminatas.vercel.app/caminatas',
+  },
+};
 
 export default async function CaminatasPage() {
   const hikes = await getUpcomingHikes();
