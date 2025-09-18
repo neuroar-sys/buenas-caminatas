@@ -1,13 +1,20 @@
 import { Client } from '@notionhq/client';
+import { NotionToMarkdown } from 'notion-to-md';
 
-// ✅ Inicialización GLOBAL del cliente de Notion
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
+const n2m = new NotionToMarkdown({ notionClient: notion });
 
-// Función para fetch contenido de una página de Notion
+// Función para fetch contenido de una página de Notion y convertirlo a Markdown
 export async function getPageContent(pageId) {
   try {
     const { results: blocks } = await notion.blocks.children.list({ block_id: pageId });
-    return blocks.map(block => JSON.stringify(block, null, 2)).join('\n\n');
+    const mdBlocks = await Promise.all(
+      blocks.map(async (block) => {
+        const mdString = await n2m.blockToMarkdown(block);
+        return mdString.parent;
+      })
+    );
+    return mdBlocks.join('\n\n');
   } catch (error) {
     console.error('Error fetching Notion page:', error);
     return '# Error al cargar el contenido desde Notion.';
@@ -74,23 +81,30 @@ export async function getTestimonios() {
         page.properties.Foto?.files[0]?.file?.url || '',
     }));
   } catch (error) {
-    console.error('🚨 ERROR al obtener testimonios:', error.message);
+    console.error('Error fetching testimonios:', error);
     return [];
   }
 }
-// Función para fetch contenido de una página de Notion y convertirlo a Markdown
-export async function getPageContent(pageId) {
+
+// Función para obtener el equipo
+export async function getEquipo() {
   try {
-    const { results: blocks } = await notion.blocks.children.list({ block_id: pageId });
-    const mdBlocks = await Promise.all(
-      blocks.map(async (block) => {
-        const mdString = await n2m.blockToMarkdown(block);
-        return mdString.parent;
-      })
-    );
-    return mdBlocks.join('\n\n');
+    const response = await notion.databases.query({
+      database_id: process.env.DATABASE_EQUIPO_ID,
+      sorts: [{ property: 'Nombre', direction: 'ascending' }],
+    });
+
+    return response.results.map((page) => ({
+      id: page.id,
+      nombre: page.properties.Nombre?.title[0]?.plain_text || 'Anónimo',
+      rol: page.properties.Rol?.rich_text[0]?.plain_text || '',
+      bio: page.properties.Bio?.rich_text[0]?.plain_text || '',
+      foto: page.properties.Foto?.files[0]?.external?.url ||
+        page.properties.Foto?.files[0]?.file?.url || '',
+      linkedin: page.properties.LinkedIn?.url || '',
+    }));
   } catch (error) {
-    console.error('Error fetching Notion page:', error);
-    return '# Error al cargar el contenido desde Notion.';
+    console.error('Error fetching equipo:', error);
+    return [];
   }
 }
