@@ -120,7 +120,7 @@ export default async function Home() {
                 </div>
                 <div className="p-8">
                   <h3 className="text-2xl font-bold mb-4 text-blue-600">Mejora en la circulación</h3>
-                  <p className="text-lg text-gray-700">Controlamos tu presión</p>
+                  <p className="text-lg text-gray-700">Estabiliza tu presión</p>
                 </div>
                 <div className="p-8">
                   <h3 className="text-2xl font-bold mb-4 text-yellow-600">Menos ansiedad</h3>
