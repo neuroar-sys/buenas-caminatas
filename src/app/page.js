@@ -1,8 +1,10 @@
-import { getTestimonios } from '@/lib/notion';
+import { getTestimonios, getCircuitos } from '@/lib/notion'; // ✅ Una sola vez
 import TestimonioCard from '@/components/TestimonioCard';
 import Image from 'next/image';
 import Link from 'next/link';
 import FAQAccordion from '@/components/FAQAccordion';
+import CircuitoCard from '@/components/CircuitoCard';
+import PropuestaCircuito from '@/components/PropuestaCircuito';
 
 // Metadatos específicos para la página de inicio
 export const metadata = {
@@ -27,7 +29,10 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const testimonios = await getTestimonios();
+  const [testimonios, circuitos] = await Promise.all([
+    getTestimonios(),
+    getCircuitos()
+  ]);
 
   return (
     <div>
@@ -187,42 +192,27 @@ export default async function Home() {
       </section>
 
       {/* Sección 5: Circuitos y Horarios (con ID para anclaje) */}
-      <section id="circuitos" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-gray-800">Circuitos y Horarios</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Encuentra el grupo y horario que mejor se adapte a ti.
-            </p>
-          </div>
+<section id="circuitos" className="py-20 bg-gray-50">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-bold mb-4 text-gray-800">Circuitos y Horarios</h2>
+      <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        Encuentra el grupo y horario que mejor se adapte a ti.
+      </p>
+    </div>
 
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-bold mb-4 text-green-600">San Justo</h3>
-              <p className="text-lg mb-2"><strong>📍 Polideportivo</strong></p>
-              <p className="text-gray-700">Lunes a Viernes: 8:00, 9:30, 11:00</p>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {circuitos.map((c) => (
+        <CircuitoCard key={c.id} circuito={c} />
+      ))}
+    </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-bold mb-4 text-blue-600">Castelar</h3>
-              <p className="text-lg mb-2"><strong>📍 Parque de la Amistad</strong></p>
-              <p className="text-gray-700">Lunes a Viernes: 8:00, 9:30</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-dashed border-gray-300">
-              <h3 className="text-2xl font-bold mb-4 text-purple-600">Próximamente</h3>
-              <p className="text-lg mb-2"><strong>📍 CABA - Parque Tres de Febrero</strong></p>
-              <p className="text-gray-700">¡Estamos llegando a tu barrio!</p>
-            </div>
-
-            <div className="text-center">
-              <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105">
-                ¿Querés que lleguemos a tu barrio? Proponé un circuito
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+    {/* Botón de Propuesta de Circuito */}
+    <div className="mt-12">
+      <PropuestaCircuito />
+    </div>
+  </div>
+</section>
 
       {/* Sección 6: Testimonios */}
       <section className="py-20 bg-white">
