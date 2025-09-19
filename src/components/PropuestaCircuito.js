@@ -1,57 +1,40 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 
 export default function PropuestaCircuito() {
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [barrio, setBarrio] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Envía la propuesta por WhatsApp
-    const mensaje = encodeURIComponent(`Me gustaría que Caminatas Saludables llegara a mi barrio: ${barrio}`);
-    window.open(`https://wa.me/5491112345678?text=${mensaje}`, '_blank');
-    setIsFormOpen(false);
-    setBarrio('');
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="text-center">
-      {!isFormOpen ? (
-        <button
-          onClick={() => setIsFormOpen(true)}
-          className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105"
-        >
-          ¿Querés que lleguemos a tu barrio? Proponé un circuito
-        </button>
-      ) : (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto mt-6 space-y-4">
-          <h3 className="text-xl font-bold text-gray-800">¡Genial! Cuéntanos tu barrio</h3>
-          <input
-            type="text"
-            value={barrio}
-            onChange={(e) => setBarrio(e.target.value)}
-            placeholder="Ej: Villa Urquiza, San Martín..."
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            required
-          />
-          <div className="flex gap-3">
+      {/* Botón Principal */}
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105"
+      >
+        ¿Querés que lleguemos a tu barrio? Proponé un circuito
+      </button>
+
+      {/* Modal con el Formulario de Notion */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl h-96 mx-4 relative overflow-hidden">
+            {/* Botón de Cerrar */}
             <button
-              type="submit"
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors"
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 z-10 bg-gray-800 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-900"
             >
-              Enviar Propuesta
+              ✕
             </button>
-            <button
-              type="button"
-              onClick={() => setIsFormOpen(false)}
-              className="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
-            >
-              Cancelar
-            </button>
+
+            {/* iframe del Formulario de Notion */}
+            <iframe
+              src="https://somos-rapha.notion.site/ebd/2736754dbb0a802aafe3fddd0d55779b" // 👈 PEGA TU ENLACE DE NOTION AQUÍ
+              className="w-full h-full border-0"
+              title="Formulario de Propuesta de Circuito"
+            ></iframe>
           </div>
-        </form>
+        </div>
       )}
     </div>
   );
